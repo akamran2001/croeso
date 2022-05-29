@@ -1,0 +1,375 @@
+- model: app.tag
+  pk: 2
+  fields:
+    name: town
+- model: app.tag
+  pk: 3
+  fields:
+    name: castle
+- model: app.tag
+  pk: 4
+  fields:
+    name: museum
+- model: app.tag
+  pk: 5
+  fields:
+    name: hike
+- model: app.tag
+  pk: 6
+  fields:
+    name: nature
+- model: app.tag
+  pk: 7
+  fields:
+    name: ice cream
+- model: app.tag
+  pk: 8
+  fields:
+    name: bookstore
+- model: app.tag
+  pk: 9
+  fields:
+    name: beach
+- model: app.tag
+  pk: 10
+  fields:
+    name: old
+- model: app.tag
+  pk: 11
+  fields:
+    name: historic
+- model: app.tag
+  pk: 12
+  fields:
+    name: busy
+- model: app.tag
+  pk: 13
+  fields:
+    name: sandy
+- model: app.tag
+  pk: 14
+  fields:
+    name: lighthouse
+- model: app.tag
+  pk: 15
+  fields:
+    name: peaceful
+- model: app.tag
+  pk: 16
+  fields:
+    name: lakes
+- model: app.tag
+  pk: 17
+  fields:
+    name: streams
+- model: app.tag
+  pk: 18
+  fields:
+    name: mountains
+- model: app.tag
+  pk: 19
+  fields:
+    name: cold
+- model: app.tag
+  pk: 20
+  fields:
+    name: cows
+- model: app.tag
+  pk: 21
+  fields:
+    name: residential
+- model: app.tag
+  pk: 22
+  fields:
+    name: monument
+- model: app.tag
+  pk: 23
+  fields:
+    name: stones
+- model: app.tag
+  pk: 24
+  fields:
+    name: aliens
+- model: app.tag
+  pk: 25
+  fields:
+    name: mysterious
+- model: app.tag
+  pk: 26
+  fields:
+    name: ominous
+- model: app.site
+  pk: 1
+  fields:
+    title: Chepstow Castle
+    description: Caste in Chepstow
+    location: Bridge St, Chepstow NP16 5EY
+    tags:
+    - 3
+- model: app.site
+  pk: 2
+  fields:
+    title: Caernarfon Castle
+    description: Royal, medieval fortress-palace built in the town of Caernarfon.
+    location: Castle Ditch, Caernarfon LL55 2AY
+    tags:
+    - 3
+    - 11
+    - 10
+    - 2
+- model: app.site
+  pk: 3
+  fields:
+    title: Caerleon Roman Fortress
+    description: Roman fortress in Caerleon
+    location: High St, Caerleon, Newport NP18 1AE
+    tags:
+    - 11
+    - 10
+- model: app.site
+  pk: 4
+  fields:
+    title: Llanddwyn Beach
+    description: A gorgeous, serene strip of sandy beach, Llanddwyn Beach is a picturesque
+      spot for a lovely stroll. There are many historic sites to visit on the beach,
+      including the lighthouse, well, and abandoned nunnery.
+    location: Llanddwyn, Newborough, Isle of Anglesey, LL61 6SG
+    tags:
+    - 9
+    - 5
+    - 11
+    - 14
+    - 6
+    - 13
+- model: app.site
+  pk: 5
+  fields:
+    title: Bath, England
+    description: Trip to see the Roman Baths
+    location: Abbey Churchyard, Bath BA1 1LZ
+    tags:
+    - 12
+    - 11
+    - 10
+    - 2
+- model: app.site
+  pk: 6
+  fields:
+    title: Snowdonia National Park
+    description: This extensive and wide-spanning park is home to a far-reaching network
+      of trails. The trails take visitors over 100 lakes and countless streams, with
+      access to craggy peaks like Cader Idris and Tryfan for more ambitious hikers.
+    location: Penrhyndeudraeth LL48 6LF
+    tags:
+    - 19
+    - 5
+    - 16
+    - 18
+    - 6
+    - 10
+    - 15
+    - 17
+- model: app.site
+  pk: 7
+  fields:
+    title: St. Non's Cliff
+    description: Located in Pembrokeshire, the path along the cliffside offers stunning
+      views of the ocean below. Many people pass by St. Non's Chapel and Well. Legends
+      say that St. Non's Well has magical healing powers.
+    location: Pembrokeshire Coast Path, St Davids, Haverfordwest SA62 6RR
+    tags:
+    - 9
+    - 20
+    - 5
+    - 6
+    - 15
+- model: app.site
+  pk: 8
+  fields:
+    title: Llanfair­pwllgwyngyll­gogery­chwyrn­drobwll­llan­tysilio­gogo­goch
+    description: Place with the really long name
+    location: Llanfair­pwllgwyngyll­gogery­chwyrn­drobwll­llan­tysilio­gogo­goch,
+      Wales
+    tags:
+    - 2
+- model: app.site
+  pk: 9
+  fields:
+    title: Tal-Y-Bont
+    description: An unassuming student residential dorm, the Tal-Y-Bont rooms offer
+      low maintenance, no-frills, get your money's worth and no more, bare-bones living.
+      Decorations are not included, and are highly recommended to make your room feel
+      not like a prison cell :) But in all seriousness, a place that has been our
+      home away from home for the past three months, close to classes, tesco, and
+      the lake
+    location: Talybont Gate, Bevan Pl, Cardiff CF14 3UY
+    tags:
+    - 15
+    - 21
+- model: app.site
+  pk: 10
+  fields:
+    title: Stonehenge
+    description: Stonehenge, located in Salisbury, is a prehistorical monument comprised
+      of large slate stones, and is quite possibly (highly certain) built by aliens.
+    location: Salisbury SP4 7DE
+    tags:
+    - 24
+    - 11
+    - 22
+    - 25
+    - 10
+    - 26
+    - 15
+    - 23
+    - 2
+- model: app.siteimage
+  pk: 2
+  fields:
+    image: images/Image_from_iOS.jpg
+    caption: Beth the Cow
+    site: 3
+- model: app.siteimage
+  pk: 4
+  fields:
+    image: images/Image_from_iOS1_RznUdgH.jpg
+    caption: long
+    site: 8
+- model: app.siteimage
+  pk: 5
+  fields:
+    image: images/bath.jpg
+    caption: Bath
+    site: 5
+- model: app.siteimage
+  pk: 6
+  fields:
+    image: images/bath1.jpg
+    caption: Bath
+    site: 5
+- model: app.siteimage
+  pk: 7
+  fields:
+    image: images/canaerforn.jpg
+    caption: Caernarfon Castle
+    site: 2
+- model: app.siteimage
+  pk: 8
+  fields:
+    image: images/lighthouse.jpg
+    caption: lit house
+    site: 4
+- model: app.siteimage
+  pk: 9
+  fields:
+    image: images/stones.jpg
+    caption: stonehenge
+    site: 10
+- model: app.siteimage
+  pk: 10
+  fields:
+    image: images/chepstow.jpg
+    caption: Chepstow Castle
+    site: 1
+- model: app.siteimage
+  pk: 11
+  fields:
+    image: images/chepstow1.jpg
+    caption: Window in chesptow caste
+    site: 1
+- model: app.siteimage
+  pk: 12
+  fields:
+    image: images/caernarfon-castle-reflection.jpg
+    caption: Caernarfon Castle - Credit britishcastle.co.uk
+    site: 2
+- model: app.siteimage
+  pk: 13
+  fields:
+    image: images/0812141_1_5.jpg
+    caption: Caernarfon Castle - Credit visitwales.com
+    site: 2
+- model: app.siteimage
+  pk: 14
+  fields:
+    image: images/0812141_1_7.jpg
+    caption: Caernarfon Castle - Credit visitwales.com
+    site: 2
+- model: app.siteimage
+  pk: 15
+  fields:
+    image: images/IMG_7748.jpg
+    caption: snowdonia one of many lakes
+    site: 6
+- model: app.siteimage
+  pk: 16
+  fields:
+    image: images/IMG_7776.jpg
+    caption: birb at peak of snowdonia
+    site: 6
+- model: app.siteimage
+  pk: 17
+  fields:
+    image: images/IMG_7790.jpg
+    caption: yet another lake
+    site: 6
+- model: app.siteimage
+  pk: 18
+  fields:
+    image: images/DSCF0418.JPG
+    caption: A.Kamran hugging life saver
+    site: 7
+- model: app.siteimage
+  pk: 19
+  fields:
+    image: images/IMG_3353.jpg
+    caption: stonehenge cool
+    site: 10
+- model: app.siteimage
+  pk: 20
+  fields:
+    image: images/IMG_3417.jpg
+    caption: bath!!! pretty church
+    site: 5
+- model: app.siteimage
+  pk: 21
+  fields:
+    image: images/IMG_3558.jpg
+    caption: green mineral water
+    site: 5
+- model: app.siteimage
+  pk: 22
+  fields:
+    image: images/IMG_7414.jpg
+    caption: st davids cliff!
+    site: 7
+- model: app.siteimage
+  pk: 23
+  fields:
+    image: images/IMG_7435.jpg
+    caption: hiked w nick!
+    site: 7
+- model: app.siteimage
+  pk: 24
+  fields:
+    image: images/IMG_7667.jpg
+    caption: abandoned nunery
+    site: 4
+- model: app.siteimage
+  pk: 25
+  fields:
+    image: images/IMG_7672.jpg
+    caption: lighthouse on the beach
+    site: 4
+- model: app.siteimage
+  pk: 26
+  fields:
+    image: images/IMG_7732.jpg
+    caption: prisoners in my castle
+    site: 2
+- model: app.siteimage
+  pk: 27
+  fields:
+    image: images/download.jpg
+    caption: homeee
+    site: 9

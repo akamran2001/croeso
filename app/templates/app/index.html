@@ -1,0 +1,138 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="dark">
+  <div class="container py-4">
+    <div class="container" id="search-box">
+      <form
+        class="form"
+        action="{% url 'index' %}"
+        method="get"
+        autocomplete="off"
+      >
+        <div class="row g-1">
+          <div class="col-11">
+            <input
+              id="search-input"
+              oninput="searching(event)"
+              type="text"
+              class="form-control form-input"
+              placeholder="{{search_bar_placeholder}}"
+              name="search"
+              required
+            />
+          </div>
+          <div class="col-1">
+            <!-- &#x denotes a hexcode. 
+                FontAwesome hexcodes can be found at https://fontawesome.com/v5/cheatsheet 
+              -->
+            <input
+              type="submit"
+              style="font-family: FontAwesome"
+              value="&#xf689;"
+              class="search-btn btn btn-primary"
+            />
+          </div>
+        </div>
+      </form>
+      <div class="row g-1">
+        <div class="col-11">
+          <ul class="list-group" id="search-suggestions"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-bottom: 1em">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-success dropdown-toggle"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Sort by: {{ sort }}
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="{% url 'index' %}?sort=title"
+              >Title</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'index' %}?sort=rating"
+              >Rating</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-outline-danger" href="{% url 'index' %}?reset=True">
+          Reset
+        </a>
+      </div>
+    </div>
+    {% for site,color in sites %}
+    <article class="postcard dark {{color}}" id="{{site.id}}">
+      {% with img=site.random_img %} {% if img %}
+
+      <a class="postcard__img_link" href="{{img.image.url}}">
+        <img
+          class="postcard__img"
+          src="{{img.image.url}}"
+          alt="{{img.caption}}"
+        />
+      </a>
+
+      {% endif %} {% endwith %}
+      <div class="postcard__text">
+        <h1 class="postcard__title blue">
+          <a href="{% url 'details' site.id %}" class="site-title"
+            >{{site.title}}</a
+          >
+        </h1>
+        <div class="postcard__subtitle small">
+          <a
+            class="link-primary"
+            href="https://www.google.com/maps/place/{{site.location}}"
+            rel="noopener noreferrer"
+            target="_blank"
+            >{{site.location}}</a
+          >
+        </div>
+
+        {% if site.avg_rating %}
+        <div class="postcard__tagbox">
+          <div class="postcard__bar" style="margin-right: 1em"></div>
+          <div class="tag__item">
+            {% for star in site.get_avg_stars %}
+            <i class="fas fa-dragon red_dragon"></i>
+            {% endfor %} {% for star in site.get_avg_empty_stars %}
+            <i class="fas fa-dragon empty_dragon"></i>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="postcard__preview-txt">{{site.description}}</div>
+        {% with tags=site.tags.all %} {% if tags.exists %}
+        <ul class="postcard__tagbox">
+          {% for tag in tags %} {% if tag_req == tag.name %}
+          <li class="tag__item selected" id="{{tag.name}}">
+            <a href="{% url 'index' %}" class="tag-name"> {{tag.name}} </a>
+          </li>
+          {% else %}
+          <li class="tag__item" id="{{tag.name}}">
+            <a href="{% url 'index' %}?tag={{tag.name}}" class="tag-name">
+              {{tag.name}}
+            </a>
+          </li>
+          {% endif %} {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+      </div>
+    </article>
+    {% empty %}
+    <h1 class="text-center">No items matched your search</h1>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %} {% block bottom %}
+<script src="{% static 'app/sites.js' %}"></script>
+{% endblock %}

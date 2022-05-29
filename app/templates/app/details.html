@@ -1,0 +1,240 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="row">
+    <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
+  </div>
+  <div class="row">
+    <!-- AVERAGE RATINGS START -->
+    {% if site.avg_rating %}
+    <a href="#start_of_comments"
+      ><h4 class="text-center">
+        {{site.avg_rating|floatformat:1}} out of 5.0
+      </h4></a
+    >
+    <div class="d-flex justify-content-center tags avg-rating">
+      {% for rating in site.get_avg_stars %}
+      <div class="give_me_space">
+        <i class="fas fa-dragon red_dragon"></i>
+      </div>
+      {% endfor %} {% for rating in site.get_avg_empty_stars %}
+      <div class="give_me_space">
+        <i class="fas fa-dragon empty_dragon"></i>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <!-- AVERAGE RATINGS END -->
+  </div>
+
+  <div class="row">
+    {% if images %}
+    <div class="col img-col">
+      <!-- IMAGE GALLERY START -->
+      <div class="container py-4">
+        {% if images %}
+        <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
+          {% if images.count > 1 %}
+          <div class="carousel-indicators">
+            {% for image in images %}
+            <button
+              type="button"
+              data-mdb-target="#img-gallery"
+              data-mdb-slide-to="{{ forloop.counter0 }}"
+              class="active"
+              aria-current="true"
+              aria-label="Slide {{ forloop.counter }}"
+            ></button>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="carousel-inner rounded-5 shadow-4-strong">
+            {% for image in images %}
+            <div
+              class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}"
+            >
+              <a class="postcard__img_link" href="{{image.image.url}}">
+                <img
+                  src="{{image.image.url}}"
+                  class="mx-auto d-block carousel-image {% if image.image.height > image.image.width %}portrait{% else %}landscape{% endif %}"
+                  alt="{{image.caption}}"
+                  onmouseover='hide_caption("{{image.id}}")'
+                  onmouseleave='show_caption("{{image.id}}")'
+                />
+              </a>
+              <div class="carousel-caption d-none d-md-block" id="{{image.id}}">
+                <h5>{{image.caption}}</h5>
+              </div>
+            </div>
+            {% endfor %} {% if images.count > 1 %}
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-mdb-target="#img-gallery"
+              data-mdb-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-mdb-target="#img-gallery"
+              data-mdb-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <!-- IMAGE GALLERY END -->
+    </div>
+    {% endif %}
+    <div class="col details-col">
+      <div class="row">
+        <!-- TAGS START -->
+        {% with tags=site.tags.all %} {% if tags.exists %}
+        <div class="tags row justify-content-center d-flex">
+          {% for tag in tags %}
+          <div
+            class="text-center tag-item col"
+            onmouseover="tag_hover(event)"
+            onmouseleave="tag_hover_end(event)"
+          >
+            <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+        <!-- TAGS END -->
+      </div>
+
+      <div class="row">
+        <h5 class="text-center">
+          <i class="fa-solid fa-location-dot" style="color: red"></i> &nbsp;
+          <a
+            class="link"
+            href="https://www.google.com/maps/place/{{site.location}}"
+            rel="noopener noreferrer"
+            target="_blank"
+            id="site-location"
+            >{{site.location}}</a
+          >
+        </h5>
+      </div>
+
+      <section class="container bg-dark rounded-5">
+        <p class="text-center text-break fs-3">{{site.description}}</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <div class="lds" id="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<div class="container map-container">
+  <div id="map" class="map"></div>
+</div>
+
+<!-- COMMENT SECTION -->
+
+<section class="container">
+  {% if user.is_authenticated %}
+  <a class="btn btn-block btn-success" href="{% url 'createreview' site.id %}">
+    Write a Review <i class="fas fa-edit"></i>
+  </a>
+  {% else %}
+  <a
+    class="btn btn-block btn-success"
+    href="{% url 'login' %}?next={{request.path}}"
+  >
+    Please login to leave a review <i class="fas fa-sign-in-alt"></i>
+  </a>
+  {% endif %}
+</section>
+
+{% if reviews %}
+<div class="container d-flex justify-content-center" id="start_of_comments">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card comments" id="comments">
+        <ul class="list-unstyled">
+          {% for review in reviews %}
+          <li>
+            <div class="row">
+              <div class="col-3 align-self-start">
+                <h6 class="user pt-2">
+                  <span class="round">
+                    <img
+                      src="https://avatars.dicebear.com/api/bottts/{{ review.user.username }}.svg"
+                      class="rounded-circle comment-pic"
+                      height="30"
+                      alt="Robot"
+                      loading="lazy"
+                    /> </span
+                  >{{ review.user.username }}
+                </h6>
+              </div>
+              <div class="col align-self-center">
+                <h3>{{ review.comment }}</h3>
+              </div>
+              <div class="col-2 align-self-end rating-num">
+                {% for star in review.get_stars %}
+                <i class="fas fa-dragon red_dragon"></i>
+                {% endfor %} {% for star in review.get_empty_stars %}
+                <i class="fas fa-dragon empty_dragon"></i>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card comments" id="comments2">
+        <h5>There are no reviews for {{site.title}} yet</h5>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- COMMENT SECTION END -->
+
+<br />
+
+<div>
+  <a href="{% url 'index' %}">
+    <button type="button" class="btn btn-outline-success btn-lg btn-rounded">
+      Back to all sites
+    </button>
+  </a>
+</div>
+
+{% endblock %} {% block bottom %}
+<script defer src="{% static 'app/details.js' %}"></script>
+{% endblock %}
