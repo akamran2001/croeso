@@ -96,7 +96,10 @@ def random_image(request):
         Redirect to a random image from the database on every request
     '''
     img: SiteImage = SiteImage.objects.order_by("?").first()
-    return redirect(img.image.url)
+    if(img):
+        return redirect(img.image.url)
+    else:
+        return redirect("https://images.unsplash.com/photo-1593627906979-dc2fdc503e32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
 
 
 def details(request, site_id):
