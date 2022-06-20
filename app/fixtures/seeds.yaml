@@ -229,3 +229,153 @@
       - 15
       - 23
       - 2
+- model: app.siteimage
+  pk: 2
+  fields:
+    image: images/Image_from_iOS.jpg
+    caption: Beth the Cow
+    site: 3
+- model: app.siteimage
+  pk: 4
+  fields:
+    image: images/Image_from_iOS1_RznUdgH.jpg
+    caption: long
+    site: 8
+- model: app.siteimage
+  pk: 5
+  fields:
+    image: images/bath.jpg
+    caption: Bath
+    site: 5
+- model: app.siteimage
+  pk: 6
+  fields:
+    image: images/bath1.jpg
+    caption: Bath
+    site: 5
+- model: app.siteimage
+  pk: 7
+  fields:
+    image: images/canaerforn.jpg
+    caption: Caernarfon Castle
+    site: 2
+- model: app.siteimage
+  pk: 8
+  fields:
+    image: images/lighthouse.jpg
+    caption: lit house
+    site: 4
+- model: app.siteimage
+  pk: 9
+  fields:
+    image: images/stones.jpg
+    caption: stonehenge
+    site: 10
+- model: app.siteimage
+  pk: 10
+  fields:
+    image: images/chepstow.jpg
+    caption: Chepstow Castle
+    site: 1
+- model: app.siteimage
+  pk: 11
+  fields:
+    image: images/chepstow1.jpg
+    caption: Window in chesptow caste
+    site: 1
+- model: app.siteimage
+  pk: 12
+  fields:
+    image: images/caernarfon-castle-reflection.jpg
+    caption: Caernarfon Castle - Credit britishcastle.co.uk
+    site: 2
+- model: app.siteimage
+  pk: 13
+  fields:
+    image: images/0812141_1_5.jpg
+    caption: Caernarfon Castle - Credit visitwales.com
+    site: 2
+- model: app.siteimage
+  pk: 14
+  fields:
+    image: images/0812141_1_7.jpg
+    caption: Caernarfon Castle - Credit visitwales.com
+    site: 2
+- model: app.siteimage
+  pk: 15
+  fields:
+    image: images/IMG_7748.jpg
+    caption: snowdonia one of many lakes
+    site: 6
+- model: app.siteimage
+  pk: 16
+  fields:
+    image: images/IMG_7776.jpg
+    caption: birb at peak of snowdonia
+    site: 6
+- model: app.siteimage
+  pk: 17
+  fields:
+    image: images/IMG_7790.jpg
+    caption: yet another lake
+    site: 6
+- model: app.siteimage
+  pk: 18
+  fields:
+    image: images/DSCF0418.JPG
+    caption: A.Kamran hugging life saver
+    site: 7
+- model: app.siteimage
+  pk: 19
+  fields:
+    image: images/IMG_3353.jpg
+    caption: stonehenge cool
+    site: 10
+- model: app.siteimage
+  pk: 20
+  fields:
+    image: images/IMG_3417.jpg
+    caption: bath!!! pretty church
+    site: 5
+- model: app.siteimage
+  pk: 21
+  fields:
+    image: images/IMG_3558.jpg
+    caption: green mineral water
+    site: 5
+- model: app.siteimage
+  pk: 22
+  fields:
+    image: images/IMG_7414.jpg
+    caption: st davids cliff!
+    site: 7
+- model: app.siteimage
+  pk: 23
+  fields:
+    image: images/IMG_7435.jpg
+    caption: hiked w nick!
+    site: 7
+- model: app.siteimage
+  pk: 24
+  fields:
+    image: images/IMG_7667.jpg
+    caption: abandoned nunery
+    site: 4
+- model: app.siteimage
+  pk: 25
+  fields:
+    image: images/IMG_7672.jpg
+    caption: lighthouse on the beach
+    site: 4
+- model: app.siteimage
+  pk: 26
+  fields:
+    image: images/IMG_7732.jpg
+    caption: prisoners in my castle
+    site: 2
+- model: app.siteimage
+  pk: 27
+  fields:
+    image: images/download.jpg
+    caption: homeee
+    site: 9
