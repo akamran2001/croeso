@@ -1,8 +1,8 @@
 /.vscode
 /static
 db.sqlite3
-/media/iamges/*
-!/media/iamges/*.zip
+/media
+!.zip
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

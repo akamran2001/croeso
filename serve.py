@@ -10,6 +10,7 @@ from tornado.options import parse_command_line
 import tornado.ioloop
 import tornado.web
 import proj.asgi
+import img
 
 GLOBAL_CHARSET = "utf-8"
 
@@ -107,4 +108,5 @@ def main():
 
 
 if __name__ == '__main__':
+    img.unzip()
     main()
