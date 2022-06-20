@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import django_heroku
 from pathlib import Path
 import os
 
@@ -27,23 +28,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 
 # repl.it happiness
-ALLOWED_HOSTS = ['localhost', 'https://croeso-i-cymru.herokuapp.com', 'https://cosc140-proj-ahmedflogabby.ahmedkamran.repl.co']
+ALLOWED_HOSTS = ['localhost', 'https://croeso-i-cymru.herokuapp.com',
+                 'https://cosc140-proj-ahmedflogabby.ahmedkamran.repl.co']
 X_FRAME_OPTIONS = '*'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://croeso-i-cymru.herokuapp.com','https://cosc140-proj-ahmedflogabby.ahmedkamran.repl.co']
+CSRF_TRUSTED_ORIGINS = ['https://croeso-i-cymru.herokuapp.com',
+                        'https://cosc140-proj-ahmedflogabby.ahmedkamran.repl.co']
 
 # Application definition
 
 INSTALLED_APPS = [
-	'app',
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -140,5 +142,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals(),staticfiles=False)
+django_heroku.settings(locals(), staticfiles=False)

@@ -77,6 +77,7 @@ class StaticFileHandler_Error(tornado.web.StaticFileHandler):
     '''
         Static file handler with error pages
     '''
+
     def write_error(self, status_code, **kwargs):
         if status_code == 404:
             self.render('app/templates/404.html')
@@ -91,9 +92,12 @@ def main():
     parse_command_line()
     tornado_app = tornado.web.Application(
         [
-            ("/static/(.*)", StaticFileHandler_Error, {'path': 'static'}),  # Serve Static Files
-            ("/media/(.*)", StaticFileHandler_Error, {'path': 'media'}),  # Serve Media Files
-            ('.*', AsgiHandler, dict(asgi_app=asgi_app)),  # Serve Django Application
+            ("/static/(.*)", StaticFileHandler_Error,
+             {'path': 'static'}),  # Serve Static Files
+            ("/media/(.*)", StaticFileHandler_Error,
+             {'path': 'media'}),  # Serve Media Files
+            # Serve Django Application
+            ('.*', AsgiHandler, dict(asgi_app=asgi_app)),
         ])
     server = tornado.httpserver.HTTPServer(tornado_app)
     port = 8080 if len(sys.argv) != 2 else int(sys.argv[1])
