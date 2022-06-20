@@ -1,1 +1,1 @@
-web: python serve.py 8000
+web: python serve.py $PORT
